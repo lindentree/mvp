@@ -1,7 +1,7 @@
 import React from 'react';
 import Square from './Square.jsx';
 
-class PieceStand extends React.Component {
+export default class PieceStand extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,13 +13,17 @@ class PieceStand extends React.Component {
     return <Square value={i} />;
   }
 
+  dropPiece(i) {
+
+  }
+
   render() {
-    const player = 'Sente';
+    const position = props;
 
     return (
       <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
+        <div className="position">{position}</div>
+        <div className="piece-stand">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
