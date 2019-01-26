@@ -17,19 +17,19 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Animal shogi(Japanese chess) client
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > All, but primarily children
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > A browser client to play animal shogi with a friend
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Not having an animal shogi board 
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Being able to play in your browser anywhere
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
@@ -41,4 +41,4 @@ Once the project moves into development, the press release can be used as a touc
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > https://en.wikipedia.org/wiki/D%C5%8Dbutsu_sh%C5%8Dgi
