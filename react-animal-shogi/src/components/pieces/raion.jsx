@@ -35,7 +35,7 @@ export default class Raion extends Piece {
       case 'sky':
         return <div className="fill"> <img src={ require('../../../dist/assets/sky-lion.gif') }/></div>
       case 'forest':
-        return <div className="fill"> <img src={ require('../../../dist/assets/sky-lion.gif') }/></div>
+        return <div className="fill"> <img src={ require('../../../dist/assets/forest-lion.gif') }/></div>
       default:
         console.log(param)
         return null;
