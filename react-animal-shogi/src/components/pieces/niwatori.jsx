@@ -2,8 +2,8 @@ import React from 'react';
 import Piece from './piece.jsx';
 
 export default class Niwatori extends Piece {
-  constructor(player){
-    super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg"));
+  constructor(props){
+    super(props );
   }
 
   isMovePossible(src, dest){
@@ -23,5 +23,26 @@ export default class Niwatori extends Piece {
    */
   getSrcToDestPath(){
     return [];
+  }
+
+  renderSwitch (param) {
+
+    console.log('niwatori prop',param)
+    switch(param) {
+      case 'sky':
+        return <div className="fill-sky"> <img src={ require('../../../dist/assets/sky-niwatori.gif') }/></div>
+      case 'forest':
+        return <div className="fill"> <img src={ require('../../../dist/assets/forest-niwatori.gif') }/></div>
+      default:
+        return null;
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        {this.renderSwitch(this.props.player)}
+      </div>
+    )
   }
 }

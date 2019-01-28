@@ -10,6 +10,8 @@ let initialBoardState = [
                 ];
 
 
+let pieces = [{}];
+
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
