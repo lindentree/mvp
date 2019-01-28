@@ -5,7 +5,11 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: Array(12).fill(null),
+      squares: [null, {}, null,
+                null, null, null,
+                null, null, null,
+                null, null, null
+                ],
       SenteIsNext: true,
     };
   }

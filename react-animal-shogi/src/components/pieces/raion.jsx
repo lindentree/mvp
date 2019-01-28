@@ -1,12 +1,8 @@
-import Piece from './piece.js';
+import Piece from './piece.jsx';
 
 export default class Raion extends Piece {
   constructor(player){
-    super(player, (player === 1?));
-    this.state = {
-      value: 200,
-      user: 'sky' || 'forest'
-    };
+    super(player);
   }
 
   isMovePossible(src, dest){
@@ -30,5 +26,21 @@ export default class Raion extends Piece {
 
   isCaptured(){
 
+  }
+
+  renderSwitch (param) {
+    switch(param) {
+      case 200:
+        return <Raion />;
+      default:
+      return 'foo';
+    }
+}
+
+  render () {
+    return (
+      <img src={ require('../../../dist/assets/sky-lion.gif') } />
+   
+    )
   }
 }

@@ -18,7 +18,7 @@ export default class PieceStand extends React.Component {
   }
 
   render() {
-    const position = props;
+    const position = this.props.orientation;
 
     return (
       <div>
