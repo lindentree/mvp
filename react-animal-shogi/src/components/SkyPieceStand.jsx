@@ -1,8 +1,8 @@
 import React from 'react';
 import Square from './Square.jsx';
 
-let test = {value: 7, orientation: 'sky'}
-let otherTest = {value: 7, orientation: 'forest'}
+let test = {value: 1, orientation: 'sky'}
+let otherTest = {value: 5, orientation: 'forest'}
 
 export default class SkyPieceStand extends React.Component {
   constructor(props) {

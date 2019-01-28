@@ -2,7 +2,7 @@ import React from 'react';
 import Square from './Square.jsx';
 
 let test = {value: 7, orientation: 'sky'}
-let otherTest = {value: 7, orientation: 'forest'}
+let otherTest = {value: 5, orientation: 'forest'}
 
 export default class ForestPieceStand extends React.Component {
   constructor(props) {
