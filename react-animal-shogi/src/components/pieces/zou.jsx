@@ -1,8 +1,9 @@
+import React from 'react';
 import Piece from './piece.jsx';
 
 export default class Zou extends Piece {
-  constructor(player){
-    super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/9/98/Chess_bdt45.svg"));
+  constructor(props){
+    super(props);
   }
 
   isMovePossible(src, dest){
@@ -39,4 +40,29 @@ export default class Zou extends Piece {
     }
     return path;
   }
+
+  renderSwitch (param) {
+
+    console.log('zou prop',param)
+    switch(param) {
+      case 'sky':
+        return <div className="fill-sky"> <img src={ require('../../../dist/assets/sky-elephant.gif') }/></div>
+      case 'forest':
+        return <div className="fill"> <img src={ require('../../../dist/assets/forest-elephant.gif') }/></div>
+      default:
+        return null;
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        {this.renderSwitch(this.props.player)}
+      </div>
+    )
+  }
+
+
+
+
 }

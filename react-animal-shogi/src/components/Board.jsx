@@ -1,15 +1,20 @@
 import React from 'react';
 import Square from './Square.jsx';
 
+
+let initialBoardState = [
+                {value: 7, orientation: 'sky'}, {value: 200, orientation: 'sky'}, {value: 5, orientation: 'sky'},
+                null, {value: 1, orientation: 'sky'}, null,
+                null, {value: 1, orientation: 'forest'}, null,
+                {value: 5, orientation: 'forest'}, {value: 200, orientation: 'forest'}, {value: 7, orientation: 'forest'}
+                ];
+
+
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: [null, {value: 200}, null,
-                null, null, null,
-                null, null, null,
-                null, {value: 200}, null
-                ],
+      squares: initialBoardState,
       SenteIsNext: true,
     };
   }

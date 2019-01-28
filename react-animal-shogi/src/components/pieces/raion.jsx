@@ -2,8 +2,8 @@ import React from 'react';
 import Piece from './piece.jsx';
 
 export default class Raion extends Piece {
-  constructor(player){
-    super(player);
+  constructor(props){
+    super(props);
   }
 
   isMovePossible(src, dest){
@@ -28,24 +28,24 @@ export default class Raion extends Piece {
   isCaptured(){
 
   }
-
+  
   renderSwitch (param) {
+
     console.log('raion prop',param)
     switch(param) {
       case 'sky':
-        return <div className="fill"> <img src={ require('../../../dist/assets/sky-lion.gif') }/></div>
+        return <div className="fill-sky"> <img src={ require('../../../dist/assets/sky-lion.gif') }/></div>
       case 'forest':
         return <div className="fill"> <img src={ require('../../../dist/assets/forest-lion.gif') }/></div>
       default:
-        console.log(param)
         return null;
     }
-}
+  }
 
   render () {
     return (
       <div>
-        {this.renderSwitch('sky')}
+        {this.renderSwitch(this.props.player)}
       </div>
     )
   }

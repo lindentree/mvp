@@ -1,8 +1,9 @@
-import Piece from './piece.js';
+import React from 'react';
+import Piece from './piece.jsx';
 
 export default class Hiyoko extends Piece {
-  constructor(player){
-    super(player, (player === 1? ));
+  constructor(props){
+    super(props);
     this.initialPositions = {
       1: [48, 49, 50, 51, 52, 53, 54, 55],
       2: [8, 9, 10, 11, 12, 13, 14, 15]
@@ -11,7 +12,7 @@ export default class Hiyoko extends Piece {
 
   isMovePossible(src, dest, isDestEnemyOccupied){
 
-    if(this.player === 1){
+    if(this.props === 1){
       if((dest === src - 8 && !isDestEnemyOccupied) || (dest === src - 16 && this.initialPositions[1].indexOf(src) !== -1)){
         return true;
       }
@@ -19,7 +20,7 @@ export default class Hiyoko extends Piece {
         return true;
       }
     }
-    else if(this.player === 2){
+    else if(this.props === 2){
       if((dest === src + 8 && !isDestEnemyOccupied) || (dest === src + 16 && this.initialPositions[2].indexOf(src) !== -1)){
         return true;
       }
@@ -44,5 +45,26 @@ export default class Hiyoko extends Piece {
       return [src + 8];
     }
     return [];
+  }
+
+  renderSwitch (param) {
+    console.log('hiyoko prop',param)
+    switch(param) {
+      case 'sky':
+        return <div className="fill-sky"> <img src={ require('../../../dist/assets/sky-hiyoko.gif') }/></div>
+      case 'forest':
+        return <div className="fill"> <img src={ require('../../../dist/assets/forest-hiyoko.gif') }/></div>
+      default:
+  
+        return null;
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        {this.renderSwitch(this.props.player)}
+      </div>
+      )
   }
 }

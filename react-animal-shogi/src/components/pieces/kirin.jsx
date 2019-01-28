@@ -1,8 +1,9 @@
-import Piece from './piece.js';
+import React from 'react';
+import Piece from './piece.jsx';
 
 export default class Kirin extends Piece {
-  constructor(player){
-    super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"));
+  constructor(props){
+    super(props);
   }
 
   isMovePossible(src, dest){
@@ -41,4 +42,28 @@ export default class Kirin extends Piece {
     }
     return path;
   }
+
+
+
+  renderSwitch (param) {
+
+    console.log('kirin prop',param)
+    switch(param) {
+      case 'sky':
+        return <div className="fill-sky"> <img src={ require('../../../dist/assets/sky-giraffe.gif') }/></div>
+      case 'forest':
+        return <div className="fill"> <img src={ require('../../../dist/assets/forest-giraffe.gif') }/></div>
+      default:
+        return null;
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        {this.renderSwitch(this.props.player)}
+      </div>
+    )
+  }
+
 }

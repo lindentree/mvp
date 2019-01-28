@@ -1,3 +1,4 @@
+import React from 'react';
 import Piece from './piece.jsx';
 
 export default class Niwatori extends Piece {
