@@ -3,31 +3,27 @@ import Raion from './pieces/raion.jsx';
 
 function Square(props) {
    let param = props.value;
+   console.log('square', param)
 
-   if (props.value === undefined) {
-     <button className="square" onClick={props.onClick}>
-      {props.value}
+   if (param === undefined || param === null ) {
+     return <button className="square" onClick={props.onClick}>
     </button>
    }
 
 let renderSwitch = (param) => {
-  switch(param) {
+  console.log('render', param)
+  switch(param.value) {
     case 200:
-      return <Raion />;
+      return <Raion player={props.value}/>;
     default:
-      return 'foo';
+      return null;
   }
 }
 
 
-
-
-
-
-
   return (
     <button className="square" onClick={props.onClick}>
-      {renderSwitch(props)}
+      {renderSwitch(param)}
     </button>
   );
 }

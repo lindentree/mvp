@@ -5,16 +5,17 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: [null, {}, null,
+      squares: [null, {value: 200}, null,
                 null, null, null,
                 null, null, null,
-                null, null, null
+                null, {value: 200}, null
                 ],
       SenteIsNext: true,
     };
   }
 
   renderSquare(i) {
+    //console.log('outer', this.state.squares[i])
     return (
       <Square 
         value={this.state.squares[i]} 

@@ -1,3 +1,4 @@
+import React from 'react';
 import Piece from './piece.jsx';
 
 export default class Raion extends Piece {
@@ -29,18 +30,23 @@ export default class Raion extends Piece {
   }
 
   renderSwitch (param) {
+    console.log('raion prop',param)
     switch(param) {
-      case 200:
-        return <Raion />;
+      case 'sky':
+        return <div className="fill"> <img src={ require('../../../dist/assets/sky-lion.gif') }/></div>
+      case 'forest':
+        return <div className="fill"> <img src={ require('../../../dist/assets/sky-lion.gif') }/></div>
       default:
-      return 'foo';
+        console.log(param)
+        return null;
     }
 }
 
   render () {
     return (
-      <img src={ require('../../../dist/assets/sky-lion.gif') } />
-   
+      <div>
+        {this.renderSwitch('sky')}
+      </div>
     )
   }
 }
