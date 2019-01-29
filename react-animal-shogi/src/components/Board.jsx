@@ -13,7 +13,9 @@ export default class Board extends React.Component {
       <Square 
         id= {id}
         piece= {this.props.status[i][j]} 
-        onClick={this.props.onClick}
+        handleMove={this.props.handleMove}
+        row={i}
+        col={j}
       />
     );
   }

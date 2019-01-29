@@ -2,20 +2,23 @@ import React from 'react';
 
 
 function Square(props) {
-   let param = props.piece;
-   console.log('square', param)
+   console.log('square', props)
+   let param = props.piece
 
    if (param === undefined || param === null ) {
-     return <button className={"square img" + props.id} onClick={props.onClick}>
+     return <button className={"square img" + props.id}>
        <div className="cell"></div>
     </button>
    }
 
 
   return (
-    <button className={"square img" + props.id} onClick={props.onClick}>
+
+  <div onClick={props.handleMove.bind(this, props.row, props.col)}>
+    <button className={"square img" + props.id} >
       <div className={"cell " + props.piece.name}></div>
     </button>
+  </div>
   );
 }
 

@@ -12,13 +12,13 @@ export default class Game extends React.Component {
     return (
     <div>
       <div className="sky">
-        <SkyPieceStand status={this.props.skystand} onClick={this.props.onClick}/>
+        <SkyPieceStand status={this.props.skystand} />
       </div>
       <div className="game-board">
-        <Board status={this.props.status} onClick={this.props.onClick}/>
+        <Board status={this.props.status} handleMove={this.props.handleMove}/>
       </div>
       <div className="forest">
-        <ForestPieceStand status={this.props.foreststand} onClick={this.props.onClick}/>
+        <ForestPieceStand status={this.props.foreststand} />
       </div>
       
     </div>
