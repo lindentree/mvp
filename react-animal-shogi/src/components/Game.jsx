@@ -4,17 +4,18 @@ import SkyPieceStand from './SkyPieceStand.jsx';
 import ForestPieceStand from './ForestPieceStand.jsx';
 
 export default class Game extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
     <div>
-      <div className="user-info">
-      </div>
-      
         <div className="sky">
           <SkyPieceStand />
         </div>
         <div className="game-board">
-          <Board />
+          <Board status={this.props.status}/>
         </div>
         <div className="forest">
           <ForestPieceStand  />

@@ -2,21 +2,11 @@ import React from 'react';
 import Square from './Square.jsx';
 
 
-let initialBoardState = [
-                {piece:"enemyGiraffe"}, {piece: "enemyLion"}, {piece:"enemyElephant"},
-                null, {piece: "enemyChick"}, null,
-                null, {piece: "playerChick"}, null,
-                {piece:"playerElephant"}, {piece: "playerLion"}, {piece:"playerGiraffe"}
-                ];
-
-
-let pieces = [{}];
-
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: initialBoardState,
+      squares: this.props.status,
       SenteIsNext: true,
     };
   }
