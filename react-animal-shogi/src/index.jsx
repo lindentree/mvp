@@ -11,14 +11,21 @@ let initialBoardState = [
                 {piece:"playerElephant"}, {piece: "playerLion"}, {piece:"playerGiraffe"}
                 ];
 
+let initialSkyStandState = [
+                 null, null, null, null, null, null
+                ];
+
+let initialForestStandState = [
+                 null, null, null, null, null, null
+                ];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
       initial: initialBoardState,
-      initSkyStand: null,
-      initForestStand: null
+      initSkyStand: initialSkyStandState,
+      initForestStand: initialForestStandState
     }
   }
 
@@ -35,7 +42,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Game status={this.state.initial}/>
+        <Game status={this.state.initial} skystand={initialSkyStandState} foreststand={initialForestStandState}/>
       </div>)
   }
 }

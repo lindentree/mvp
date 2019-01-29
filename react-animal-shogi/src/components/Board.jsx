@@ -5,10 +5,6 @@ import Square from './Square.jsx';
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      squares: this.props.status,
-      SenteIsNext: true,
-    };
   }
 
   handleClick() {
@@ -20,7 +16,7 @@ export default class Board extends React.Component {
     return (
       <Square 
         id= {i + 1}
-        piece= {this.state.squares[i]} 
+        piece= {this.props.status[i]} 
         onClick={() => this.handleClick(i)}
       />
     );

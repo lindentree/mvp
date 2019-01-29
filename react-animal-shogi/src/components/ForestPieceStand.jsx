@@ -7,16 +7,12 @@ let otherTest = {piece: "playerChick"}
 export default class ForestPieceStand extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      squares: [null, null, null, null, null, null],
-      SenteIsNext: true,
-    };
   }
 
   renderSquare(i) {
      return (
       <Square 
-        piece= {this.state.squares[i]} 
+        piece= {this.props.status[i]} 
         onClick={() => this.handleClick(i)}
       />
     );
