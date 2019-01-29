@@ -2,7 +2,7 @@ import React from 'react';
 
 
 function Square(props) {
-   console.log('square', props)
+   //console.log('square', props)
    let param = props.piece
 
    if (param === undefined || param === null ) {

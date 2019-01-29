@@ -227,7 +227,7 @@ import $ from 'jquery';
     return found;
   }
   
-let testLion = {
+let forestLion = {
     name: 'playerLion',
     owner: 1,
     moveDirections: [
@@ -240,15 +240,79 @@ let testLion = {
         { row: -1, col: 1  }, // Northeast
         { row: 1,  col: 1  } // Southeast
       ],
-      location: [3, 1]
+      location: [3, 1],
+      automove: [-1, -1],
+      isCaptured: false
+
     };
   
+  let forestChick = {
+    name: 'playerChick',
+    owner: 1,
+    moveDirections: [
+        { row: -1, col: 0  }, // North
+      ],
+      location: [2, 1],
+      automove: [-1, 0]
+    };
+
+  let skyLion = {
+    name: 'enemyLion',
+    owner: 2,
+    moveDirections: [
+        { row: -1, col: 0  }, // North
+        { row: 1,  col: 0  }, // South
+        { row: 0,  col: -1 }, // West
+        { row: 0,  col: 1  }, // East
+        { row: -1, col: -1 }, // Northwest
+        { row: 1,  col: -1 }, // Southwest
+        { row: -1, col: 1  }, // Northeast
+        { row: 1,  col: 1  } // Southeast
+      ],
+      location: [0, 1],
+      automove: [1, 0],
+      isCaptured: false
+
+    };
+
+  let skyChick = {
+    name: 'enemyChick',
+    owner: 2,
+    moveDirections: [
+        { row: -1, col: 0  }, // North
+      ],
+      location: [0, 1],
+      automove: [1, 0]
+    };
+
+
+
+  let skyGiraffe = {
+    name: 'enemyGiraffe',
+    owner: 2,
+    moveDirections: [
+        { row: -1, col: 0  }, // North
+      ],
+      location: [0, 0],
+      automove: [1, 0]
+    };
+
+
+  let skyElephant = {
+    name: 'enemyGiraffe',
+    owner: 2,
+    moveDirections: [
+        { row: -1, col: 0  }, // North
+      ],
+      location: [0, 2],
+      automove: [1, 1]
+    };
 
   let testBoard = [
-                   [null, null, null],
-                   [null, null, null],
-                   [null, null, null],
-                   [null, testLion, null]
+                   [skyGiraffe, skyLion, skyElephant],
+                   [null, skyChick, null],
+                   [null, forestChick, null],
+                   [null, forestLion, null]
                   ];
 
 let initialSkyStandState = [
@@ -266,15 +330,18 @@ class App extends React.Component {
       initial: testBoard,
       initSkyStand: initialSkyStandState,
       initForestStand: initialForestStandState,
-      player: 1, 
+      currentPlayer: 1, 
       moveInProgress: false,
       movingPiece: null,
       validMoves: null,
       captures:[]
     }
 
-    this.handleMove = this.handleMove.bind(this);
+    this.hardCode = this.hardCode.bind(this);
+    
   }
+
+
 
   componentDidMount() {
     axios.get('/users')
@@ -287,22 +354,25 @@ class App extends React.Component {
   }
 
   updatePlayerInfo(text) {
-   return <GameStatus text={text} />
+    return <GameStatus text={text} />
   }
 
   switchPlayer() {
-    let currentPlayer = this.state.player;
-    currentPlayer = (currentPlayer === 1) ? 1 : 2;
-    this.setState({'player': currentPlayer});
+    let currentPlayer = this.state.currentPlayer;
+    currentPlayer = (currentPlayer === 1) ? 2 : 1;
+    this.setState({'currentPlayer': currentPlayer});
   }
 
 
-  isValidMove(row, col, player =  this.state.player) {
-    let board = this.state.initial;
-    let target = board[row][col];
-    if (target === undefined || target === null) {
+  isValidMove(row, col, player = this.state.player) {
+    const { moveInProgress, initial, validMoves} = this.state;
+    let target = initial;
+    if (target === undefined) {
       return false;
+    } 
 
+    if (target === null) {
+      return true;
     }
 
     if (target.owner === player) {
@@ -312,81 +382,108 @@ class App extends React.Component {
     return true;  
   }
 
-  handleMove(row, col) {
-    let board = this.state.initial;
-    let target = board[row][col];
-
-    if (this.state.moveInProgress) {
-      if (!isValidMove(row, col, this.state.player)) {
-        return this.cancelMove();
-      }
-      else {
-        return this.completeMove(row, col, target);
-      }
-    } 
-    else {
-      if (!target.name) return;
-      if (target.owner !== this.state.currentPlayer) return this.cancelMove();
-    }
-
-    for (var i = 0; i < target.moveDirections.length; i++) {
-      let newRow = row + target.moveDirections[i].row;
-      let newCol = col + target.moveDirections[i].col;
-      if (isValidMove(newRow, newCol, this.state.player)) {
-        validMoves.push([newRow, newCol])
-      }
-    }
-      
-    if (!validMoves.length) {
-        return this.cancelMove(); // no valid moves were found...
-    }
-    else {
-        this.setState({moveInProgress: true});
-        this.setState({movingPiece: target});
-        this.setState({validMoves: validMoves});
-    }
+  // handleMove(row, col) {
+  //   const {player, moveInProgress, initial, validMoves} = this.state;
     
+  //   let target = initial[row][col];
+  //   console.log('move', target)
+  //   console.log('checkout', moveInProgress)
+
+  //   if (moveInProgress) {
+  //     console.log('check', moveInProgress)
+  //     if (!this.isValidMove(row, col, player)) {
+  //       console.log('inner', this.isValidMove(row, col, player))
+  //       return this.cancelMove();
+  //     }
+  //     else {
+  //       console.log('innermost', target);
+  //       return this.completeMove(row, col, target);
+  //     }
+  //   }
+
+  //   else {
+  //      // console.log('san', target);
+  //     if (!target) return;
+  //     if (target.owner !== this.state.currentPlayer) return this.cancelMove();
+      
+  //     for (var i = 0; i < target.moveDirections; i++) {
+  //       let x = target.moveDirections[i].row
+  //       let y = target.moveDirections[i].col
+
+  //       if (this.isValidMove(x, y)) {
+  //         validMoves.push [x, y];
+  //       }
+  //     }
+
+  //     if (!validMoves.length) {
+  //       return this.cancelMove(); // no valid moves were found...
+  //     }
+
+  //     else {
+  //       this.setState({moveInProgress: true});
+  //     console.log('fin', this.state);
+  //     this.setState({movingPiece: target});
+
+  //     }
+      
+
+  //   } 
+
+  // }
+
+  hardCode (row, col) {
+    const {currentPlayer, moveInProgress, initial, validMoves} = this.state;
+    let source = initial[row][col];
+    console.log('confirm', source);
+    if (source.owner !== currentPlayer) {
+      console.log("turn",currentPlayer)
+      console.log("inner",source.owner)
+      return;
+      
+    } else if (source !== null){
+      let x = row + source.automove[0];
+      let y = col + source.automove[1];
+      console.log('x', y)
+      initial[x][y] = source;
+      initial[row][col] = null;
+      this.switchPlayer();
+      console.log('outer confirm', this.state.currentPlayer);
+    }
 
   }
  
-  completeMove(row, col, movingPiece = this.state.movingPiece) {
-    let validMoves = this.state.validMoves;
-    let board = this.state.initial;
-    let target = board[row][col];
-
-    let source = board[movingPiece.location[0]][movingPiece.location[1]];
-    board[movingPiece.location[0]][movingPiece.location[1]] = null;
-    let destination = board[row][col];
-
-    if (destination.name) {
-      this.state.captures.push(destination);
-    }
-
-    destination = movingPiece;
-
+  // completeMove(row, col, movingPiece = this.state.movingPiece) {
     
+  //   const {player, moveInProgress, initial, validMoves} = this.state;
 
+  //   let source = initial[movingPiece.location[0]][movingPiece.location[1]];
+  //   console.log('complete', source)
+  //   initial[movingPiece.location[0]][movingPiece.location[1]] = null;
+  //   let destination = initial[row][col];
+  //   console.log('dest', destination)
+  //   if (destination !== null) {
+  //     this.state.captures.push(destination);
+  //   }
+  //   console.log('dest', movingPiece)
+  //   destination = source;
 
+  //   this.setState({moveInProgress: false});
+  //   this.setState({movingPiece: null});
+  //   this.setState({validMoves: null});
+  //   this.switchPlayer();
+  // }
 
-    this.setState({moveInProgress: false});
-    this.setState({movingPiece: null});
-    this.setState({validMoves: null});
-    this.switchPlayer();
-  }
+  // cancelMove() {
+  //   this.setState({moveInProgress: false});
+  //   this.setState({movingPiece: null});
+  //   this.setState({validMoves: null});
+  // }
 
-  cancelMove() {
-    this.setState({moveInProgress: false});
-    this.setState({movingPiece: null});
-    this.setState({validMoves: null});
-  }
-
-
-  
 
   render () {
     return (
       <div>
-        <Game status={this.state.initial} handleMove={this.handleMove} skystand={this.state.initSkyStand} foreststand={this.state.initForestStand}/>
+        <Game status={this.state.initial} handleMove={this.hardCode} skystand={this.state.initSkyStand} foreststand={this.state.initForestStand}/>
       </div>)
   }
 }
