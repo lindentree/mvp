@@ -12,16 +12,13 @@ export default class Game extends React.Component {
     return (
     <div>
       <div className="sky">
-        <SkyPieceStand status={this.props.skystand}/>
+        <SkyPieceStand status={this.props.skystand} onClick={this.props.onClick}/>
       </div>
       <div className="game-board">
-        <Board status={this.props.status}/>
-      </div>
-      <div id="debugPanel">
-        <textarea rows="5" cols="70" id="debug"></textarea>
+        <Board status={this.props.status} onClick={this.props.onClick}/>
       </div>
       <div className="forest">
-        <ForestPieceStand status={this.props.foreststand}/>
+        <ForestPieceStand status={this.props.foreststand} onClick={this.props.onClick}/>
       </div>
       
     </div>

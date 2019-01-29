@@ -46,13 +46,6 @@ class UsersView extends React.Component {
         <div>
           <label for="name">Last Name:</label>
           <input type="text" id="lastname" name="lastName" value={this.state.lastName} onChange={this.handleInputChange}/>
-        </div>
-          <label for="mail">E-mail Address:</label>
-          <input type="email" id="mail" name="email" onChange={this.handleInputChange}/>
-        <div>
-          <label for="msg">Number of Guests:</label>
-          <input type="number"  value={this.state.guests} id="number" name="guests" value="0" min="0" max="10" onChange={this.handleInputChange}/>
-        </div>
       </form>
       </div>
     )
