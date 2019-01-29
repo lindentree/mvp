@@ -23,6 +23,14 @@ app.get('/users', function (req, res) {
   });
 });
 
+app.post('/create', function (req, res) {
+  
+});
+
+app.patch('/update', function (req, res) {
+  
+});
+
 app.listen(3005, function() {
   console.log('listening on port 3005!');
 });

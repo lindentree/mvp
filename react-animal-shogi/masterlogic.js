@@ -315,12 +315,12 @@ $(document).ready(function() {
   }
 
   /**
-   * Determines occurances of all pieces on the board.
+   * Determines occurences of all pieces on the board.
    * @param {string} board The board to iterate over.
-   * @return {object} count The number of occurances of all pieces.
+   * @return {object} count The number of occurences of all pieces.
   */
-  function getOccurances(board) {
-    var occurances = {
+  function getOccurences(board) {
+    var occurences = {
       'enemyLion'     : 0,
       'playerLion'    : 0,
       'enemyElephant' : 0,
@@ -337,12 +337,12 @@ $(document).ready(function() {
       for(var col = 0; col < 3; col++) {
         // If position is not empty
         if(board[row][col] != -1) {
-          occurances[board[row][col]] += 1;
+          occurences[board[row][col]] += 1;
         }
       }
     }
 
-    return occurances;
+    return occurences;
   }
 
   /**
@@ -421,34 +421,7 @@ $(document).ready(function() {
       enemyTurn = true;
       currentTurn = 'enemy';
 
-      // AI will make a random move
-      // makeRandomMove();
-
-      // Get all possible moves for enemy
-      // var moves = getValidMoves(_board, currentTurn);
-
-      // Get all possible board combinations
-      // var boards = makeAllPossibleMoves(moves);
-
-      // AI will make a move based on manhattan distance 
-      // To playerLion
-      // manhattanDistance(boards, moves);
-
-      // AI will make move based on custom heuristic
-      // boardEvaluation(boards, moves);
-      setTimeout(function() {
-        // Get the best move
-        // var data = minimax(5, 'enemy', _board);
-        // console.log(data);
-        // var move = data[1];
-        // console.log(move);
-        // _makeMove(move);
-
-        var data = alphabeta(7, 'enemy', Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, _board);
-        console.log(data);
-        var move = data[1];
-        _makeMove(move);
-      }, 500);
+      
       
     } else if (enemyTurn) {
       enemyTurn = false;

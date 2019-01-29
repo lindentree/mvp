@@ -12,7 +12,6 @@ export default class SkyPieceStand extends React.Component {
      return (
       <Square 
         piece= {this.props.status[i]} 
-        onClick={() => this.handleClick(i)}
       />
     );
   }

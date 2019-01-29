@@ -11,17 +11,19 @@ export default class Game extends React.Component {
   render() {
     return (
     <div>
-        <div className="sky">
-          <SkyPieceStand status={this.props.skystand}/>
-        </div>
-        <div className="game-board">
-          <Board status={this.props.status}/>
-        </div>
-        <div className="forest">
-          <ForestPieceStand  status={this.props.foreststand}/>
-        </div>
-      <div className="game-info">
+      <div className="sky">
+        <SkyPieceStand status={this.props.skystand}/>
       </div>
+      <div className="game-board">
+        <Board status={this.props.status}/>
+      </div>
+      <div id="debugPanel">
+        <textarea rows="5" cols="70" id="debug"></textarea>
+      </div>
+      <div className="forest">
+        <ForestPieceStand status={this.props.foreststand}/>
+      </div>
+      
     </div>
     );
   }

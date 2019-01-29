@@ -11,6 +11,14 @@ let initialBoardState = [
                 {piece:"playerElephant"}, {piece: "playerLion"}, {piece:"playerGiraffe"}
                 ];
 
+
+let emptyBoardState = [
+                null, null, null,
+                null, null, null,
+                null, null, null,
+                null, null, null
+                ];
+
 let initialSkyStandState = [
                  null, null, null, null, null, null
                 ];
@@ -18,6 +26,14 @@ let initialSkyStandState = [
 let initialForestStandState = [
                  null, null, null, null, null, null
                 ];
+
+
+let overallGameState = {
+     board: [],
+     skyStand: [],
+     forestStand: []
+
+}                
 
 class App extends React.Component {
   constructor(props) {

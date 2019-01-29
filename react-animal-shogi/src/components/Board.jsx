@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from './Square.jsx';
+import $ from 'jquery';
 
 
 export default class Board extends React.Component {
@@ -23,8 +24,7 @@ export default class Board extends React.Component {
   }
 
   render() {
-    const status = 'Sente';
-
+    
     return (
       <div className="board" id="one">
         <div className="sky-row">

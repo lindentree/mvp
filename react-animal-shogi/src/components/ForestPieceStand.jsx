@@ -13,7 +13,6 @@ export default class ForestPieceStand extends React.Component {
      return (
       <Square 
         piece= {this.props.status[i]} 
-        onClick={() => this.handleClick(i)}
       />
     );
   }

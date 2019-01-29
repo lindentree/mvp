@@ -207,11 +207,6 @@ $(document).ready(function() {
     });
   });
 
-  // Set the first debug message
-  debugPanel('=================TURN ' + turnCount + '=================');
-  debugPanel('\n\n')
-  debugPanel('  Enemy move for turn: ' + turnCount);
-
   /**************************
   *      HELPER METHODS     *
   **************************/
@@ -266,17 +261,6 @@ $(document).ready(function() {
   }
 
   /**
-   * Appends text to the debug panel.
-   * @param {string} message The message to add to debug panel.
-   * @return {undefined}
-  */
-  function debugPanel(message) {
-    $('#debug').append(message);
-    $('#debug').scrollTop($('#debug')[0].scrollHeight);
-    return;
-  }
-
-  /**
    * Determines location of a piece.
    * @param {string} piece The name of the piece to locate. 
    * @return {object} position The Row/Col position of piece.
@@ -296,7 +280,7 @@ $(document).ready(function() {
   }
 
   /**
-   * Determines is a piece is on the board.
+   * Determines if a piece is on the board.
    * @param {object} board The configuration to test.
    * @param {string} piece The piece to search for.
    * @returns {boolean} found Whether the piece was found.
@@ -421,35 +405,6 @@ $(document).ready(function() {
       enemyTurn = true;
       currentTurn = 'enemy';
 
-      // AI will make a random move
-      // makeRandomMove();
-
-      // Get all possible moves for enemy
-      // var moves = getValidMoves(_board, currentTurn);
-
-      // Get all possible board combinations
-      // var boards = makeAllPossibleMoves(moves);
-
-      // AI will make a move based on manhattan distance 
-      // To playerLion
-      // manhattanDistance(boards, moves);
-
-      // AI will make move based on custom heuristic
-      // boardEvaluation(boards, moves);
-      setTimeout(function() {
-        // Get the best move
-        // var data = minimax(5, 'enemy', _board);
-        // console.log(data);
-        // var move = data[1];
-        // console.log(move);
-        // _makeMove(move);
-
-        var data = alphabeta(7, 'enemy', Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, _board);
-        console.log(data);
-        var move = data[1];
-        _makeMove(move);
-      }, 500);
-      
     } else if (enemyTurn) {
       enemyTurn = false;
       enemyMoved = true;
@@ -460,38 +415,7 @@ $(document).ready(function() {
     return;
   }
 
-  /**
-   * Returns all possible board configurations after each move.  
-   * @param {list} moves All moves to be tried.
-   * @returns {list} All possible board configurations.
-  */
-  function makeAllPossibleMoves(moves) {
-    var boards = [];
-    
-    // Make enough copies of the board for all possible moves
-    for(var copy = 0; copy < moves.length; copy++) {
-      // Deep copy our internal board
-      var copiedBoard = $.extend(true, {}, _board);
-      boards.push(copiedBoard);
-    }
-
-    $.each(moves, function(index) {
-      var board = boards[index];
-      var fromRowPos = moves[index]['from']['row'];
-      var fromColPos = moves[index]['from']['col'];
-      var toRowPos   = moves[index]['to']['row'];
-      var toColPos   = moves[index]['to']['col'];
-      var pieceName  = moves[index]['piece'];
-      
-      // Clear contents of cell 
-      board[fromRowPos][fromColPos] = -1;
-
-      // Move piece
-      board[toRowPos][toColPos] = pieceName;
-    });
-
-    return boards;
-  }
+  
 
   /**
    * Returns a new board configuration for a single move.
@@ -911,8 +835,6 @@ $(document).ready(function() {
     if(playerTurn) {
       // Attempting to select an enemy piece...
       if((_board[x][y]).indexOf('enemy') !== -1) {
-        debugPanel('\n');
-        debugPanel('  Player tried to move an enemy piece: ' + _board[x][y] + ' at position: ' + x + ', ' + y);
         selectedCell = false;
         return false;
       }
@@ -952,16 +874,12 @@ $(document).ready(function() {
     for(var col = 0; col < 3; col++) {
       if(_board[0][col] === 'playerChick' && movedPlayerChick) {
         playerChickPromotion = true;
-        debugPanel('\n');
-        debugPanel('  Player chick gets promoted to a hen!');
         movedPlayerChick = false;
         return;
       }
 
       if (_board[3][col] === 'enemyChick' && movedEnemyChick) {
         enemyChickPromotion = true;
-        debugPanel('\n');
-        debugPanel('  Enemy chick gets promoted to a hen!');
         movedEnemyChick = false;
         return;
       }
@@ -1093,19 +1011,19 @@ $(document).ready(function() {
     */
     $('.row').each(function() {
       $(this).find('.square').each(function() {
-        $(this).css('border', '2px dashed gray');
+        $(this).css('border: 2px solid grey !important;');
       });
     })
 
     $('.playerRow').each(function() {
       $(this).find('.square').each(function() {
-        $(this).css('border', '2px dashed gray');
+        $(this).css('border: 2px solid grey !important;');
       });
     })
 
     $('.enemyRow').each(function() {
       $(this).find('.square').each(function() {
-        $(this).css('border', '2px dashed gray');
+        $(this).css('border: 2px solid grey !important;');
       });
     });
     return;
