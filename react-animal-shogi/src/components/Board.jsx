@@ -3,10 +3,10 @@ import Square from './Square.jsx';
 
 
 let initialBoardState = [
-                {value: 7, orientation: 'sky'}, {value: 200, orientation: 'sky'}, {value: 5, orientation: 'sky'},
-                null, {value: 1, orientation: 'sky'}, null,
-                null, {value: 1, orientation: 'forest'}, null,
-                {value: 5, orientation: 'forest'}, {value: 200, orientation: 'forest'}, {value: 7, orientation: 'forest'}
+                {piece:"enemyGiraffe"}, {piece: "enemyLion"}, {piece:"enemyElephant"},
+                null, {piece: "enemyChick"}, null,
+                null, {piece: "playerChick"}, null,
+                {piece:"playerElephant"}, {piece: "playerLion"}, {piece:"playerGiraffe"}
                 ];
 
 
@@ -21,11 +21,16 @@ export default class Board extends React.Component {
     };
   }
 
+  handleClick() {
+
+  }
+
   renderSquare(i) {
     //console.log('outer', this.state.squares[i])
     return (
       <Square 
-        value={this.state.squares[i]} 
+        id= {i + 1}
+        piece= {this.state.squares[i]} 
         onClick={() => this.handleClick(i)}
       />
     );
@@ -35,8 +40,7 @@ export default class Board extends React.Component {
     const status = 'Sente';
 
     return (
-      <div className="board">
-        <div className="playerTurn">{status}</div>
+      <div className="board" id="one">
         <div className="sky-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}

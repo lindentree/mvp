@@ -1,14 +1,14 @@
 import React from 'react';
 import Square from './Square.jsx';
 
-let test = {value: 7, orientation: 'sky'}
-let otherTest = {value: 5, orientation: 'forest'}
+let otherTest = {piece: "playerChick"}
+
 
 export default class ForestPieceStand extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: [otherTest, null, null],
+      squares: [null, null, null, null, null, null],
       SenteIsNext: true,
     };
   }
@@ -16,7 +16,7 @@ export default class ForestPieceStand extends React.Component {
   renderSquare(i) {
      return (
       <Square 
-        value={this.state.squares[i]} 
+        piece= {this.state.squares[i]} 
         onClick={() => this.handleClick(i)}
       />
     );
@@ -31,10 +31,13 @@ export default class ForestPieceStand extends React.Component {
     return (
       <div>
   
-        <div className="piece-stand">
+        <div id="forestStand">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
+          {this.renderSquare(3)}
+          {this.renderSquare(4)}
+          {this.renderSquare(5)}
         </div>
       </div>
     );

@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/items')
+    axios.get('/users')
      .then(function (response) {
        console.log(response);
      })
